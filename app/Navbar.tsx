@@ -19,7 +19,7 @@ const Navbar = () => {
     const path = usePathname()
     
     return (
-    <div className='flex space-x-6 border-b mb-5 h-12 items-center'>
+    <div className='flex space-x-6 border-b mb-5 h-12 items-center p-6'>
         <Link href='/'><AiFillBug /></Link>
         <ul className='flex space-x-6'>
             
