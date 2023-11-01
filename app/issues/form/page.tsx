@@ -14,13 +14,14 @@ interface Inputs {
     description: string
 }
 
-const NewIssue = () => {
+const FormPage = () => {
   const [error, setError] = useState('')
   const router = useRouter()
   const {
         register,
         handleSubmit,
         control,
+        watch,
         formState: { errors },
   } = useForm<Inputs>({
     resolver: zodResolver(schema)
@@ -68,4 +69,4 @@ const NewIssue = () => {
   )
 }
 
-export default NewIssue
+export default FormPage
