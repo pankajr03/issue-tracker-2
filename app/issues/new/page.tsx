@@ -9,6 +9,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { schema } from '@/app/validateSchema';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import ErrorMessage from '@/app/components/ErrorMessage';
 interface Inputs {
     title: string
     description: string
@@ -49,16 +50,20 @@ const NewIssue = () => {
             <TextField.Root>
                 <TextField.Input placeholder="Input title" {...register('title')} />
             </TextField.Root>
-            {errors.title && <Text color="red" as="p">{errors.title?.message}</Text>}
+
+            <ErrorMessage>
+                {errors.title?.message}
+            </ErrorMessage>
 
             <Controller 
             name="description"
             control={control}
             render={({field})=> <SimpleMDE placeholder="Reply to comment…" {...field} /> }
             />
-            {errors.description && <Text color="red" as="p">{errors.description?.message}</Text>}
+            <ErrorMessage>
+                {errors.description?.message}
+            </ErrorMessage>
             
-
             <Button>
                 <FaSave width="16" height="16" /> Add Form
             </Button>
