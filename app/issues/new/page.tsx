@@ -10,6 +10,7 @@ import { schema } from '@/app/validateSchema';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import ErrorMessage from '@/app/components/ErrorMessage';
+import Spinner from '@/app/components/Spinner';
 interface Inputs {
     title: string
     description: string
@@ -17,6 +18,7 @@ interface Inputs {
 
 const NewIssue = () => {
   const [error, setError] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const router = useRouter()
   const {
         register,
@@ -29,9 +31,11 @@ const NewIssue = () => {
 
   const onSubmit: SubmitHandler<Inputs> = async(data) => {
     try {
+        setIsSubmitting(true)
         await axios.post('/api/issues',data);
         router.push('/')    
     } catch (error) {
+        setIsSubmitting(false)
         setError('It is an unexpected error!')
     }
   }
@@ -64,8 +68,8 @@ const NewIssue = () => {
                 {errors.description?.message}
             </ErrorMessage>
             
-            <Button>
-                <FaSave width="16" height="16" /> Add Form
+            <Button disabled={isSubmitting}>
+                <FaSave width="16" height="16" /> Add Form {isSubmitting && <Spinner />}
             </Button>
             
         </form>
