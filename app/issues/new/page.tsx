@@ -2,7 +2,8 @@
 import { TextField, Text, Button, Callout } from '@radix-ui/themes'
 import { FaSave } from 'react-icons/fa';
 import React, { useState } from 'react'
-import SimpleMDE from "react-simplemde-editor";
+//import SimpleMDE from 'react-simplemde-editor';
+import dynamic from 'next/dynamic';
 import "easymde/dist/easymde.min.css";
 import { useForm, SubmitHandler, Controller } from "react-hook-form"
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -11,13 +12,17 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import ErrorMessage from '@/app/components/ErrorMessage';
 import Spinner from '@/app/components/Spinner';
-import delay from 'delay';
+
+const SimpleMDE = dynamic(
+    () => import ("react-simplemde-editor"), {
+        ssr: false
+    })
 interface Inputs {
     title: string
     description: string
 }
 
-const NewIssue = async() => {
+const NewIssue = () => {
   const [error, setError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const router = useRouter()
@@ -30,7 +35,7 @@ const NewIssue = async() => {
     resolver: zodResolver(schema)
   })
 
-  await delay(2000)
+  // await delay(2000)
 
   const onSubmit: SubmitHandler<Inputs> = async(data) => {
     try {
@@ -65,8 +70,8 @@ const NewIssue = async() => {
             </ErrorMessage>
 
             <Controller 
-            name="description"
-            control={control}
+            name="description" 
+            control={control} 
             render={({field})=> <SimpleMDE placeholder="Reply to comment…" {...field} /> }
             />
             <ErrorMessage>

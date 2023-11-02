@@ -24,7 +24,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.variable}>
-        <Theme appearance="light" radius="full">
+        {/* <Theme appearance="light" radius="full"> */}
+        <Theme>
         <Navbar />  
         {children}
         {/* <ThemePanel /> */}
