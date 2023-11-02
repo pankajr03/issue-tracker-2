@@ -5,6 +5,7 @@ import prisma from '@/prisma/client'
 import IssueStatusBadge from '../components/IssueStatusBadge'
 import delay from 'delay'
 import IssueActions from './IssueActions'
+import LinkRadixLink from '../components/LinkRadixLink'
 const IssuePage = async() => {
   const issues = await prisma.issue.findMany()
   await delay(1000)
@@ -25,13 +26,13 @@ const IssuePage = async() => {
         {issues.map(issue => (
           <Table.Row key={issue.id}>
             <Table.RowHeaderCell>
-              <Link href={`/issues/${issue.id}`}>
-              {issue.title}
-              </Link>
+              <LinkRadixLink href={`/issues/${issue.id}`}>
+                {issue.title}
+              </LinkRadixLink>
+              
               <div className='block md:hidden'>
                 <IssueStatusBadge status={issue.status} />
-                
-                
+               
               </div>
               <div className='block md:hidden'>{issue.createdAt.toDateString()}</div>
             </Table.RowHeaderCell>
