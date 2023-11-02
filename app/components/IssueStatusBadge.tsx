@@ -1,7 +1,7 @@
 import { Status } from '@prisma/client'
 import { Badge } from '@radix-ui/themes'
 const statusMap: Record<
-    Status, {label: string, color: 'red' | 'violent' | 'green'}> = {
+    Status, {label: string, color: "red" | "violent" | "green"}> = {
     OPEN: { label: 'open', color: 'red'},
     IN_PROGRESS: { label: 'In Progress', color: 'violent'},
     CLOSED: {label: 'closed', color: 'green'}
