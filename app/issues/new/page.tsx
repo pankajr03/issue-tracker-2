@@ -11,12 +11,13 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import ErrorMessage from '@/app/components/ErrorMessage';
 import Spinner from '@/app/components/Spinner';
+import delay from 'delay';
 interface Inputs {
     title: string
     description: string
 }
 
-const NewIssue = () => {
+const NewIssue = async() => {
   const [error, setError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const router = useRouter()
@@ -29,6 +30,8 @@ const NewIssue = () => {
     resolver: zodResolver(schema)
   })
 
+  await delay(2000)
+
   const onSubmit: SubmitHandler<Inputs> = async(data) => {
     try {
         setIsSubmitting(true)
@@ -39,6 +42,8 @@ const NewIssue = () => {
         setError('It is an unexpected error!')
     }
   }
+
+  
 
   return (
     <div className="max-w-xl p-6 mb-6 space-y-4">

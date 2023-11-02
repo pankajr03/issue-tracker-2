@@ -12,11 +12,11 @@ const loadingDetailPage = () => {
       <Card className='space-y-6'>
         <Heading as="h3"><Skeleton /></Heading>
         <Flex gap="4" my="3">
-        <Skeleton />
-        <Skeleton />
+        <Skeleton width={"6rem"}/>
+        <Skeleton width={"10rem"}/>
         </Flex>
         <Card>
-        <p><Skeleton /></p>
+        <Skeleton/>
         </Card>
       </Card>
     </div>
