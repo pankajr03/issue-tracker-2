@@ -4,6 +4,8 @@ import { Flex, Heading, Text, Card } from '@radix-ui/themes'
 import delay from 'delay'
 import { notFound } from 'next/navigation'
 import React from 'react'
+import Markdown from 'react-markdown'
+
 type Props = {
     params: {id: string}
 }
@@ -27,8 +29,11 @@ const issueDetailPage = async({params}: Props) => {
           <IssueStatusBadge status={issue.status} />
           <Text>{issue.createdAt.toDateString()}</Text>
         </Flex>
-        <Card>
-        <p>{issue.description}</p>
+        
+        <Card className='prose'>
+        <Markdown>
+          {issue.description}
+        </Markdown> 
         </Card>
       </Card>
     </div>

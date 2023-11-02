@@ -7,7 +7,7 @@ import IssueActions from './IssueActions'
 const LoadingIssuesPage = () => {
   const issues = [1,2,3,4]
   return (
-    <div>
+    <div className='p-6 max-w-4xl'>
         <IssueActions />
     
     <Table.Root variant="surface">
