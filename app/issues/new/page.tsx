@@ -1,17 +1,16 @@
 'use client'
-import { TextField, Text, Button, Callout } from '@radix-ui/themes'
+import { Button, Callout, TextField } from '@radix-ui/themes';
+import { useState } from 'react';
 import { FaSave } from 'react-icons/fa';
-import React, { useState } from 'react'
 //import SimpleMDE from 'react-simplemde-editor';
-import dynamic from 'next/dynamic';
-import "easymde/dist/easymde.min.css";
-import { useForm, SubmitHandler, Controller } from "react-hook-form"
-import { zodResolver } from '@hookform/resolvers/zod';
+import { ErrorMessage, Spinner } from "@/app/components";
 import { schema } from '@/app/validateSchema';
+import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
+import "easymde/dist/easymde.min.css";
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
-import ErrorMessage from '@/app/components/ErrorMessage';
-import Spinner from '@/app/components/Spinner';
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 
 const SimpleMDE = dynamic(
     () => import ("react-simplemde-editor"), {
@@ -34,8 +33,6 @@ const NewIssue = () => {
   } = useForm<Inputs>({
     resolver: zodResolver(schema)
   })
-
-  // await delay(2000)
 
   const onSubmit: SubmitHandler<Inputs> = async(data) => {
     try {

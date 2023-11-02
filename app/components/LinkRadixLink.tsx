@@ -1,6 +1,6 @@
+import { Link as RadixLink } from '@radix-ui/themes';
 import NextLink from 'next/link';
-import { Link as RadixLink } from '@radix-ui/themes'
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react';
 
 type Props = {
     href: string;
