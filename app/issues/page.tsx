@@ -9,7 +9,7 @@ const IssuePage = async() => {
   const issues = await prisma.issue.findMany()
   await delay(1000)
   return (
-    <div>
+    <div className='p-6 max-w-4xl'>
     <IssueActions />
 
     <Table.Root variant="surface">
