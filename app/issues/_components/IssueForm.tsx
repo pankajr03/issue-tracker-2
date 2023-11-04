@@ -37,8 +37,14 @@ const IssueForm = ({issue}: {issue?: Issue}) => {
   const onSubmit: SubmitHandler<Inputs> = async(data) => {
     try {
         setIsSubmitting(true)
-        await axios.post('/api/issues',data);
-        router.push('/')    
+        if (issue) {
+            await axios.patch('/api/issues/' + issue.id, data)
+        } else {
+            await axios.post('/api/issues',data);
+        }
+         
+        router.push('/issues')
+        router.refresh()    
     } catch (error) {
         setIsSubmitting(false)
         setError('It is an unexpected error!')
@@ -77,7 +83,7 @@ const IssueForm = ({issue}: {issue?: Issue}) => {
             </ErrorMessage>
             
             <Button disabled={isSubmitting}>
-                <FaSave width="16" height="16" /> Add Form {isSubmitting && <Spinner />}
+                <FaSave width="16" height="16" /> {issue ? 'Update Form': 'Save Form'} { ' ' } {isSubmitting && <Spinner />}
             </Button>
             
         </form>
