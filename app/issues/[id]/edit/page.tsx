@@ -1,10 +1,9 @@
-import { Grid, Box } from '@radix-ui/themes'
-import React from 'react'
-import EditIssueButton from '../EditIssueButton'
-import EditIssueDetail from '../EditIssueDetail'
 import prisma from '@/prisma/client'
+import dynamic from 'next/dynamic'
 import { notFound } from 'next/navigation'
-import IssueForm from '../../_components/IssueForm'
+const IssueForm = dynamic(()=> import("../../_components/IssueForm"), {
+  ssr: false
+})
 type Props = {
     params: {id: string}
 }

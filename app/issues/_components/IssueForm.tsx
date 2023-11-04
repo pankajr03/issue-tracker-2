@@ -1,21 +1,20 @@
 'use client'
-import { Button, Callout, TextField } from '@radix-ui/themes';
-import { useState } from 'react';
-import { FaSave } from 'react-icons/fa';
 import { ErrorMessage, Spinner } from "@/app/components";
 import { schema } from '@/app/validateSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Issue } from '@prisma/client';
+import { Button, Callout, TextField } from '@radix-ui/themes';
 import axios from 'axios';
 import "easymde/dist/easymde.min.css";
-import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import { Issue } from '@prisma/client';
-// import SimpleMdeReact from 'react-simplemde-editor';
-const SimpleMdeReact = dynamic(
-    () => import ("react-simplemde-editor"), {
-        ssr: false
-     })
+import { FaSave } from 'react-icons/fa';
+import SimpleMdeReact from 'react-simplemde-editor';
+// const SimpleMdeReact = dynamic(
+//     () => import ("react-simplemde-editor"), {
+//         ssr: false
+//      })
 interface Inputs {
     title: string
     description: string
