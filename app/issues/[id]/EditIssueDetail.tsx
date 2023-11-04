@@ -14,7 +14,7 @@ const EditIssueDetail = ({issue}: {issue: Issue}) => {
           <Text>{issue.createdAt.toDateString()}</Text>
         </Flex>
         
-        <Card className='prose'>
+        <Card className='prose max-w-full'>
         <Markdown>
           {issue.description}
         </Markdown> 
