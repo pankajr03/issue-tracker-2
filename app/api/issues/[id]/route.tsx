@@ -1,5 +1,6 @@
 import { schema } from "@/app/validateSchema";
 import prisma from "@/prisma/client";
+import delay from "delay";
 import { notFound } from "next/navigation";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -37,6 +38,7 @@ export async function DELETE( request: NextRequest, {params}: {params: {id: stri
             id: parseInt(params.id)
         }
     })
+    await delay(2000)
     if (!issue) 
         return NextResponse.json({ error: 'Invalid issue'}, {status: 404})
     
