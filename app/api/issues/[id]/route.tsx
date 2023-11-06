@@ -38,7 +38,7 @@ export async function DELETE( request: NextRequest, {params}: {params: {id: stri
             id: parseInt(params.id)
         }
     })
-    await delay(2000)
+    // await delay(2000)
     if (!issue) 
         return NextResponse.json({ error: 'Invalid issue'}, {status: 404})
     

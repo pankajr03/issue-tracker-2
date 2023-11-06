@@ -13,7 +13,7 @@ const Navbar = () => {
     },
     {
         name: "Issues",
-        href: "/issues"
+        href: "/issues/list"
     }
     ]
     const path = usePathname()
