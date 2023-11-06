@@ -5,7 +5,8 @@ import {AiFillBug} from 'react-icons/ai'
 import { usePathname } from 'next/navigation'
 import classNames from 'classnames'
 import { useSession } from 'next-auth/react'
-import { Box, Container, Flex } from '@radix-ui/themes'
+import { Avatar, Box, Container, DropdownMenu, Flex, Text } from '@radix-ui/themes'
+import { stat } from 'fs'
 
 
 const Navbar = () => {
@@ -23,7 +24,7 @@ const Navbar = () => {
     const path = usePathname()
     
     return (
-        <nav className='border-b mb-5 h-12 items-center py-3'>
+        <nav className='border-b mb-5 items-center py-3'>
             <Container>
             <Flex justify={'between'}>
                 <Flex align={'center'} gap={'3'}>
@@ -46,8 +47,28 @@ const Navbar = () => {
                 </Flex>
 
                 <Box>
-                    {status==='authenticated' && <Link href="/api/auth/signout">{session.user?.name} Signout</Link>}
-                    {status==='unauthenticated' && <Link href='/api/auth/signin'>Login</Link>}
+                    <DropdownMenu.Root>
+                        <DropdownMenu.Trigger >
+                            {status ==='authenticated' && <Avatar src={session?.user?.image!} 
+                            alt={session?.user?.email!}
+                            radius='full'
+                            fallback="?"
+                            className='cursor-pointer'
+                            />}
+                            
+                        </DropdownMenu.Trigger>
+                        <DropdownMenu.Content>
+                            <DropdownMenu.Label>
+                                <Text>{session?.user?.email!}</Text>
+                            </DropdownMenu.Label>
+                            <DropdownMenu.Label>
+                                <Link href="/api/auth/signout">Signout</Link>
+                                
+                            </DropdownMenu.Label>
+                        </DropdownMenu.Content>
+                    </DropdownMenu.Root>
+                    {status === 'unauthenticated' && <Link href='/api/auth/signin'>Login</Link> }
+                    
                 </Box>
             </Flex>
         </Container>
