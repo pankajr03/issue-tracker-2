@@ -1,12 +1,13 @@
-import { Button, Heading } from '@radix-ui/themes'
+import { Button, Flex, Heading } from '@radix-ui/themes'
 import Link from 'next/link'
+import IssueStatusFilter from './IssueStatusFilter'
 
 const IssueActions = () => {
   return (
-    <div className='space-x-3 py-6'>
-      <Heading as='h2' className='py-2'>Issues Page</Heading>
+    <Flex py={"6"} justify='between'>
+      <IssueStatusFilter />
       <Link href='/issues/new'><Button>Add New Issue</Button></Link>
-    </div>
+    </Flex>
   )
 }
 
