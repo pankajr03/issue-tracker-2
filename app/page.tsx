@@ -5,6 +5,7 @@ import Pagination from './Pagination'
 import LatestIssues from './LatestIssues'
 import IssueSummary from './IssueSummary'
 import prisma from '@/prisma/client'
+import IssueChart from './IssueChart'
 
 export default async function Home({searchParams}:  {searchParams: {page: string}}) {
   const router = useRouter()
@@ -24,6 +25,7 @@ export default async function Home({searchParams}:  {searchParams: {page: string
   return (
     <div>
       <IssueSummary open={countOpen} closed={countClosed} in_progress={countInProgress}/>
+      <IssueChart open={countOpen} closed={countClosed} in_progress={countInProgress}/>
       <LatestIssues />
     </div>
   )
