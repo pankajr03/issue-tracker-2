@@ -1,14 +1,11 @@
-'use client'
-import { Flex, Text, Button, Grid } from '@radix-ui/themes'
-import { useRouter } from 'next/navigation'
-import Pagination from './Pagination'
-import LatestIssues from './LatestIssues'
-import IssueSummary from './IssueSummary'
 import prisma from '@/prisma/client'
+import { Flex, Grid } from '@radix-ui/themes'
+import { Metadata } from 'next'
 import IssueChart from './IssueChart'
+import IssueSummary from './IssueSummary'
+import LatestIssues from './LatestIssues'
 
 export default async function Home({searchParams}:  {searchParams: {page: string}}) {
-  const router = useRouter()
   const countOpen = await prisma.issue.count({
     where: {status: 'OPEN'}
   })
@@ -33,4 +30,9 @@ export default async function Home({searchParams}:  {searchParams: {page: string
     </Grid>
    
   )
+}
+
+export const metadata: Metadata = {
+  title: 'Issue Tracker - Dashboard',
+  description: 'Issue tracker as app for loggin issues in the system.'
 }
